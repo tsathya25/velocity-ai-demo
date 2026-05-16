@@ -1,0 +1,170 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+.container {
+  max-width: 1080px;
+  margin: auto;
+  padding: 48px 22px;
+}
+
+.hero { padding: 60px 0; }
+
+h1 {
+  font-size: 46px;
+  line-height: 1.05;
+  margin-bottom: 18px;
+}
+
+h2 {
+  font-size: 28px;
+  margin-top: 48px;
+}
+
+p {
+  font-size: 18px;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+.button {
+  display: inline-block;
+  background: #38bdf8;
+  color: #0f172a;
+  padding: 14px 22px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 16px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin-top: 25px;
+}
+
+.card {
+  background: #1e293b;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid #334155;
+}
+
+.small {
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+.demo-section {
+  margin-top: 70px;
+  padding-top: 35px;
+  border-top: 1px solid #334155;
+}
+
+.phone {
+  max-width: 430px;
+  margin: 30px auto;
+  background: #000;
+  border-radius: 32px;
+  padding: 18px;
+  border: 1px solid #374151;
+}
+
+.screen {
+  background: #111827;
+  border-radius: 24px;
+  min-height: 620px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.top {
+  border-bottom: 1px solid #374151;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+
+.chat {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.msg {
+  padding: 11px 14px;
+  border-radius: 18px;
+  margin: 10px 0;
+  max-width: 85%;
+  line-height: 1.4;
+  font-size: 15px;
+}
+
+.bot {
+  background: #1f2937;
+  color: #f9fafb;
+}
+
+.user {
+  background: #2563eb;
+  color: white;
+  margin-left: auto;
+}
+
+.input {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 999px;
+  border: 1px solid #374151;
+  background: #030712;
+  color: white;
+}
+
+button {
+  border: none;
+  border-radius: 999px;
+  padding: 12px 16px;
+  background: #38bdf8;
+  color: #082f49;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.quick button {
+  background: #374151;
+  color: #f9fafb;
+  font-size: 13px;
+}
+
+.leadbox {
+  margin-top: 24px;
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 16px;
+  padding: 18px;
+}
+
+pre {
+  white-space: pre-wrap;
+  color: #d1d5db;
+}
