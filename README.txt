@@ -1,0 +1,1 @@
+Open index.html. The landing page and live demo are now in one file, so there is no separate demo.html link to break.

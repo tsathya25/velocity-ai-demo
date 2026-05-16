@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Velocity AI Systems Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; background: #0f172a; color: #f8fafc; }
+    .container { max-width: 1080px; margin: auto; padding: 48px 22px; }
+    .hero { padding: 60px 0; }
+    h1 { font-size: 46px; line-height: 1.05; margin-bottom: 18px; }
+    h2 { font-size: 28px; margin-top: 48px; }
+    p { font-size: 18px; color: #cbd5e1; line-height: 1.6; }
+    .button { display: inline-block; background: #38bdf8; color: #0f172a; padding: 14px 22px; border-radius: 10px; text-decoration: none; font-weight: bold; margin-top: 16px; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 25px; }
+    .card { background: #1e293b; padding: 24px; border-radius: 16px; border: 1px solid #334155; }
+    .small { font-size: 14px; color: #94a3b8; }
+    .demo-section { margin-top: 70px; padding-top: 35px; border-top: 1px solid #334155; }
+    .phone { max-width: 430px; margin: 30px auto; background: #000; border-radius: 32px; padding: 18px; border: 1px solid #374151; }
+    .screen { background: #111827; border-radius: 24px; min-height: 620px; padding: 18px; display: flex; flex-direction: column; }
+    .top { border-bottom: 1px solid #374151; padding-bottom: 12px; margin-bottom: 12px; font-weight: bold; }
+    .chat { flex: 1; overflow-y: auto; }
+    .msg { padding: 11px 14px; border-radius: 18px; margin: 10px 0; max-width: 85%; line-height: 1.4; font-size: 15px; }
+    .bot { background: #1f2937; color: #f9fafb; }
+    .user { background: #2563eb; color: white; margin-left: auto; }
+    .input { display: flex; gap: 8px; margin-top: 12px; }
+    input { flex: 1; padding: 12px; border-radius: 999px; border: 1px solid #374151; background: #030712; color: white; }
+    button { border: none; border-radius: 999px; padding: 12px 16px; background: #38bdf8; color: #082f49; font-weight: bold; cursor: pointer; }
+    .quick { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .quick button { background: #374151; color: #f9fafb; font-size: 13px; }
+    .leadbox { margin-top: 24px; background: #1f2937; border: 1px solid #374151; border-radius: 16px; padding: 18px; }
+    pre { white-space: pre-wrap; color: #d1d5db; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <p class="small">AI automation for local service businesses</p>
+      <h1>Stop losing customers who message after hours.</h1>
+      <p>Velocity AI Systems builds simple AI lead systems that answer common questions, collect customer info, and send clean appointment-ready leads to your business.</p>
+      <a class="button" href="#demo">View Live Demo</a>
+    </section>
+
+    <section>
+      <h2>What the AI Lead Assistant Does</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Replies Fast</h3>
+          <p>Answers common questions about pricing, services, hours, and booking steps.</p>
+        </div>
+        <div class="card">
+          <h3>Captures Leads</h3>
+          <p>Collects name, phone, service interest, and preferred booking time.</p>
+        </div>
+        <div class="card">
+          <h3>Saves Time</h3>
+          <p>Reduces repetitive replies so owners and staff can focus on real customers.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Best Fit Businesses</h2>
+      <p>Detailing shops, tint shops, wrap shops, gyms, barbers, trainers, med spas, and other appointment-based local businesses.</p>
+    </section>
+
+    <section>
+      <h2>Starter Package</h2>
+      <p><strong>$300-$500 setup</strong> for a basic FAQ and lead capture system. Optional monthly support starts at <strong>$100/month</strong>.</p>
+      <p class="small">This page is a demo asset. Final integrations depend on the client's platform, Meta account access, and approved automation tools.</p>
+    </section>
+
+    <section class="demo-section" id="demo">
+      <h2>AI Instagram DM Assistant Demo</h2>
+      <p>This is a mock client demo for a detailing shop. It shows the flow before connecting real Instagram or CRM tools.</p>
+
+      <div class="phone">
+        <div class="screen">
+          <div class="top">@velocity_detail_demo</div>
+          <div class="chat" id="chat"></div>
+          <div class="quick">
+            <button onclick="sendQuick('How much is a full detail?')">Price</button>
+            <button onclick="sendQuick('Do you do ceramic coating?')">Ceramic</button>
+            <button onclick="sendQuick('Can I book for Saturday?')">Booking</button>
+            <button onclick="sendQuick('My name is Tarun, my phone is 407-555-0134, I want ceramic coating Friday afternoon')">Lead Example</button>
+          </div>
+          <div class="input">
+            <input id="message" placeholder="Message..." onkeydown="if(event.key==='Enter'){sendMessage()}">
+            <button onclick="sendMessage()">Send</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="leadbox">
+        <h2>Captured Lead Summary</h2>
+        <pre id="lead">No lead captured yet.</pre>
+      </div>
+    </section>
+  </main>
+
+<script>
+const chat = document.getElementById("chat");
+const leadBox = document.getElementById("lead");
+
+let lead = {
+  name: "",
+  phone: "",
+  service: "",
+  preferred_time: "",
+  status: "Not captured"
+};
+
+function addMessage(text, who) {
+  const div = document.createElement("div");
+  div.className = "msg " + who;
+  div.textContent = text;
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function botReply(userText) {
+  const text = userText.toLowerCase();
+
+  if (text.includes("phone") || text.match(/\d{3}[- ]?\d{3}[- ]?\d{4}/)) {
+    extractLead(userText);
+    return "Got it. I captured your info and sent it to the business owner for follow-up. You should receive a confirmation or quote shortly.";
+  }
+
+  if (text.includes("price") || text.includes("how much") || text.includes("full detail")) {
+    return "A full detail usually starts around $180, but final pricing depends on vehicle size and condition. Want me to grab your name, phone, and vehicle so the shop can send an exact quote?";
+  }
+
+  if (text.includes("ceramic")) {
+    return "Yes, we offer ceramic coating packages. Most customers choose 1-year, 3-year, or 5-year protection. Send your name, phone, vehicle, and preferred day, and I’ll pass it to the shop.";
+  }
+
+  if (text.includes("book") || text.includes("appointment") || text.includes("saturday")) {
+    return "We can help with booking. What service are you looking for, and what day/time works best? Please include your name and phone number.";
+  }
+
+  return "I can help with pricing, ceramic coating, full details, availability, and booking. What service are you interested in?";
+}
+
+function extractLead(text) {
+  const phoneMatch = text.match(/\d{3}[- ]?\d{3}[- ]?\d{4}/);
+  lead.phone = phoneMatch ? phoneMatch[0] : "Detected but needs confirmation";
+
+  const lower = text.toLowerCase();
+  if (lower.includes("tarun")) lead.name = "Tarun";
+  else if (lower.includes("my name is")) lead.name = text.split("my name is")[1]?.split(",")[0]?.trim() || "Needs confirmation";
+  else lead.name = "Needs confirmation";
+
+  if (lower.includes("ceramic")) lead.service = "Ceramic coating";
+  else if (lower.includes("detail")) lead.service = "Detailing";
+  else if (lower.includes("tint")) lead.service = "Window tint";
+  else lead.service = "Needs confirmation";
+
+  if (lower.includes("friday")) lead.preferred_time = "Friday afternoon";
+  else if (lower.includes("saturday")) lead.preferred_time = "Saturday";
+  else lead.preferred_time = "Needs confirmation";
+
+  lead.status = "Captured";
+  leadBox.textContent = JSON.stringify(lead, null, 2);
+}
+
+function sendMessage() {
+  const input = document.getElementById("message");
+  const text = input.value.trim();
+  if (!text) return;
+  addMessage(text, "user");
+  input.value = "";
+  setTimeout(() => addMessage(botReply(text), "bot"), 400);
+}
+
+function sendQuick(text) {
+  document.getElementById("message").value = text;
+  sendMessage();
+}
+
+addMessage("Hey, thanks for messaging Velocity Detail Demo. I can help with pricing, services, and booking. What are you looking to get done?", "bot");
+</script>
+</body>
+</html>
