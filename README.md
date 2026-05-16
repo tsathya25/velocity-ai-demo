@@ -8,6 +8,19 @@ Velocity AI Systems is a static web demo that shows how an AI assistant could he
 
 The current demo is built around a mock Instagram DM assistant for a detailing business. It is designed as a front-end proof of concept, not a production backend integration.
 
+## Live Demo
+
+View the live demo here:
+
+[Velocity AI Systems Demo](https://tsathya25.github.io/velocity-ai-demo/)
+
+## Contact
+
+For demo inquiries or service requests:
+
+- Email: velocityaisystems@gmail.com
+- Phone: 863-610-0698
+
 ## Features
 
 - Responsive landing page
@@ -33,24 +46,19 @@ This project is aimed at appointment-based local businesses such as:
 ```bash
 /
 ├── index.html     # Main landing page and interactive demo
-└── README.md      # Project documentation
+├── README.md      # Project documentation
+├── css/
+│   └── style.css  # Page styling
+└── js/
+    └── script.js  # Demo chatbot logic
 ```
-
-## Live Demo
-
-The demo currently runs directly from:
-
-```bash
-index.html
-```
-
-After GitHub Pages is enabled, the live site can be linked here.
 
 ## Technologies Used
 
 - HTML5
 - CSS3
 - JavaScript
+- GitHub Pages
 
 ## Current Limitations
 
@@ -88,7 +96,7 @@ No build step or package installation is required.
 - Add CRM or Google Sheets lead export
 - Add authentication for business owners
 - Add deployment documentation
-- Add screenshots and a live GitHub Pages link
+- Add screenshots
 
 ## License
 
